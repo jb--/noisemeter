@@ -4,6 +4,7 @@ const loudnessDisplay = document.getElementById("loudness");
 let thresholdValue = 30;
 let lastAlert = Date.now();
 let audio;
+let isStarted = false;
 
 
 const noSleep = new NoSleep();
@@ -13,6 +14,7 @@ let startRec = async () => {
   noSleep.enable();
   startRecordingButton.disabled = true;
   stopRecordingButton.disabled = false;
+  isStarted = true;
 
   audioContext = new AudioContext();
   analyser = audioContext.createAnalyser();
@@ -34,7 +36,28 @@ let startRec = async () => {
 
 // Data array to store loudness values
 const loudnessData = new Array(200).fill(NaN);
-const avgLoudnessData = new Array(200).fill(NaN);
+
+let initialLoudnessAnimation = () => {
+  let initialThreshold = 30;
+  if (isStarted) {
+    return;
+  }
+  let time = Date.now() / 1000;
+  for (let i = 0; i < loudnessData.length; i++) {
+    loudnessData[i] =  0.45 * initialThreshold * Math.sin(i / 10 + 3 * time) + initialThreshold * 0.5;
+  }
+  let currentThresholdArray = new Array(200).fill(thresholdValue);
+
+  let update = {
+    y: [loudnessData, loudnessData, currentThresholdArray]
+  };
+  Plotly.update("loudnessChart", update);
+  if (!isStarted) {
+    requestAnimationFrame(initialLoudnessAnimation);
+  }
+};
+requestAnimationFrame(initialLoudnessAnimation);
+
 const thresholdArray = new Array(200).fill(thresholdValue);
 let data = [{
   'x': Array.from(Array(loudnessData.length).keys()),
@@ -118,7 +141,6 @@ function updateLoudness() {
   const dataArray = new Uint8Array(bufferLength);
   analyser.getByteFrequencyData(dataArray);
 
-  const avgLoudness = 0.1 * dataArray.reduce((a, b) => a + b) / bufferLength;
   // Define the A-weighting filter coefficients
   const aWeightingCoefficients = [
     -39.4, -26.2, -16.1, -8.6, -3.2, 0, 1.2, 1, -1.1, -1.8, -2.5, -2.9, -3, -2.8, -2.5, -2, -1.4, -0.6, 0.1, 0.6, 1
