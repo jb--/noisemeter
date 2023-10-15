@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📢 Free online noise alarm</title>
+  <!-- Name suggestions: 
+      - LoudAlert
+      - NoiseNotifier
+      - DecibelDetect
+      - SoundSignal
+      - AudioAlarm
+      - VolumeAlerts
+      - NoiseThreshold
+      - DecibelGuard
+      - SoundSentry
+      - LoudnessMonitor
+
+  Similar apps:
+    https://toonoisyapp.com/
+    https://apps.apple.com/us/app/too-loud-noise-meter-timer/id1101856655
+
+  -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script src="
+https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css
+" rel="stylesheet">
+  <script src="nosleep.min.js"></script>
+  <style>
+    body {
+      background-color: #050d21;
+      min-height: 100vh;
+    }
+
+    #hamburger {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 50px;
+      height: 50px;
+      cursor: grab;
+    }
+
+    #hamburger.dragging {
+      cursor: grabbing !important;
+    }
+
+    .line {
+      position: relative;
+      margin: 5px;
+      width: 50px;
+      height: 5px;
+      background-color: #7FFF00;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .mainhero {
+      background-image: url("background.png?v=2");
+      background-size: cover;
+      background-position: center center;
+    }
+  </style>
+
+  <script src="https://cdn.plot.ly/plotly-2.26.2.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <section class="hero is-medium is-link mainhero">
+    <div class="hero-body">
+      <p class="title">
+        📢 Noise Meter
+      </p>
+      <p class="subtitle">
+        🎺 Plays a sound when you're too loud!
+      </p>
+
+      <div class="field is-grouped is-grouped-centered">
+        <p class="control">
+          <button id="startRecording" class="button is-primary">Measure the Noise!</button>
+        </p>
+        <p class="control">
+          <button id="stopRecording" class="button is-secondary" disabled>Stop Recording</button>
+        </p>
+      </div>
+    </div>
+    <div id="loudnessChart" width="100%"></div>
+    <div class="hero-body">
+      <div class="control">
+        <label for="sensitivity">Sensitivity</label>
+        <input type="range" class="slider is-fullwidth is-medium is-circle" id="sensitivity" name="sensitivity" min="1" value="10" max="100" />
+      </div>
+    </div>
+    
+    <div class="hero-foot">
+      <p>Loudness: <span id="loudness">N/A</span></p>
+    </div>
+  </section>
+  <script src="script.js"></script>
+</body>
+
+</html>
