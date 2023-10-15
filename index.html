@@ -5,28 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>📢 Free online noise alarm</title>
-  <!-- Name suggestions: 
-      - LoudAlert
-      - NoiseNotifier
-      - DecibelDetect
-      - SoundSignal
-      - AudioAlarm
-      - VolumeAlerts
-      - NoiseThreshold
-      - DecibelGuard
-      - SoundSentry
-      - LoudnessMonitor
-
-  Similar apps:
-    https://toonoisyapp.com/
-    https://apps.apple.com/us/app/too-loud-noise-meter-timer/id1101856655
-
-  -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <script src="
 https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js
 "></script>
-<link href="
+  <link href="
 https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css
 " rel="stylesheet">
   <script src="nosleep.min.js"></script>
@@ -92,14 +75,41 @@ https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css
     <div class="hero-body">
       <div class="control">
         <label for="sensitivity">Sensitivity</label>
-        <input type="range" class="slider is-fullwidth is-medium is-circle" id="sensitivity" name="sensitivity" min="1" value="10" max="100" />
+        <input type="range" class="slider is-fullwidth is-medium is-circle" id="sensitivity" name="sensitivity" min="1"
+          value="10" max="100" />
       </div>
     </div>
-    
+
     <div class="hero-foot">
       <p>Loudness: <span id="loudness">N/A</span></p>
     </div>
   </section>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        This <strong>noise alarm</strong> by <a href="https://bartnick.eu">Jörg Bartnick</a> is
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a> licensed and accessible on <a
+          href="https://github.com/jb--/noisemeter">github</a>.
+      </p>
+    </div>
+
+    <div class="content">
+      <h4 class="title is-4">About Noise Meter</h4>
+      <p>
+        Noise meter is designed to measure and monitor noise levels in your environment. If you
+        cross a threshold, you'd hear a sound.
+        Since every devices microphone might be slightly different, it's quite a tough job to get accurate decibel readings.
+        Here, we circumvent the issue by not even trying to give you a number. Read about <a href="https://en.wikipedia.org/wiki/A-weighting">A-weighting</a> for more information.
+        You can use the sensitivity slider to adjust the threshold at which the alarm goes off.
+      </p>
+      <h4 class="title is-4">Privacy</h4>
+      <p>
+        This app runs entirely in your browser. Your microphone data is not sent to any server.
+        I do not store any of your data on my servers.
+      </p>
+    </div>
+  </footer>
   <script src="script.js"></script>
 </body>
 
